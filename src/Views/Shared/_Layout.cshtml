@@ -8,21 +8,42 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    @*<div class="navbar navbar-inverse navbar-fixed-top">*@
+    <div class="container">
+        <div style="padding:0 0 2% 80%;"><img src="~/Content/images/PhoneNumber.png" alt="CallUs" class="img-responsive" /></div>
+        <div class="navbar navbar-inverse">
+
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @*@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                @Html.ActionLink("Interceuticals", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Betterwoman", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Betterman", "About", "Home")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Betterwoman
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Shop</a></li>
+                            <li><a href="#">More Info</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Betterman
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Shop</a></li>
+                            <li><a href="#">More Info</a></li>
+                        </ul>
+                    </li>
                     <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
                 </ul>
             </div>
