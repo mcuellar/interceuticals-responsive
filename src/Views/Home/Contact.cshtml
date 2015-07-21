@@ -4,92 +4,107 @@
 @*<h2>@ViewBag.Title.</h2>
     <h3>@ViewBag.Message</h3>*@
 <div class="row">
-    <div class="col-md-4">
-    </div>
+    @*<div class="col-sm-6 col-lg-4">
+        test
+    </div>*@
 
-    <div class="col-md-8">
-        <form>
+    @*<div class="col-sm-6 col-lg-10">*@
 
-            <!-- Form Name -->
-            <h2>Contact Us</h2>
+    <h2>Contact Us</h2>
+        <form class="form-horizontal" role="form">
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label for="hear-about">Where did you hear about us?</label>
-                <input id="hear-about" name="hear-about" type="text" placeholder="Where did you hear about us" class="form-control" required="">
-                <p class="help-block">How did you hear about us? Internet, Friend, Ad, etc</p>
+
+            <div class="col-sm-8 col-lg-4">
+                <div class="form-group">
+                    <label for="hearAbout" class="col-md-4 control-label">Where did you hear about us?</label>
+                    <div class="col-md-10">
+                        <input id="hearAbout" name="hearAbout" type="text" placeholder="Where did you hear about us" class="form-control" required="">
+                        @*<p class="help-block">How did you hear about us? Internet, Friend, Ad, etc</p>*@
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-8 col-lg-4">
+                <div class="form-group">
+                    <label for="email" class="col-md-4 control-label">Email:</label>
+                    <div class="col-md-8">
+                        <input type="email" class="form-control" id="email" placeholder="Email" required="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-8 col-lg-4">
+                <div class="form-group">
+                    <label for="firstName" class="col-md-4 control-label">First Name:</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="firstName" placeholder="Enter First Name" required="">
+                    </div>
+                </div>
             </div>
 
             <!-- Text input-->
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="text" placeholder="Enter Email" class="form-control" required="">
-
+            <div class="col-sm-8 col-lg-4">
+                <div class="form-group">
+                    <label for="lastName" class="col-md-4 control-label">Last Name:</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name" required="">
+                    </div>
+                </div>
             </div>
 
             <!-- Text input-->
-            <div class="form-group">
-                <label for="first-name">First Name</label>
-                <input id="first-name" name="first-name" type="text" placeholder="Enter First Name" class="form-control" required="">
-
+            <div class="col-sm-8 col-lg-4">
+                <div class="form-group">
+                    <label for="company" class="col-md-4 control-label">Company:</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="company" placeholder="Enter Company">
+                    </div>
+                </div>
             </div>
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label for="last-name">Last Name</label>
-                <input id="last-name" name="last-name" type="text" placeholder="Enter Last Name" class="form-control" required="">
-
+            <div class="col-sm-10 col-lg-4">
+                <div class="form-group">
+                    <label for="street" class="col-md-4 control-label">Street:</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="street" placeholder="Enter Street">
+                    </div>
+                </div>
             </div>
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label for="company">Company</label>
-                <input id="company" name="company" type="text" placeholder="Enter Company Name" class="form-control">
+            <div class="col-sm-10 col-lg-4">
+                <div class="form-group">
+                    <label for="state" class="col-md-4 control-label">State:</label>
+                    <div class="col-md-8">
+                        <select id="state-select" name="state-select" class="form-control">
+                            <option>Select State</option>
+                            <option>Alabama</option>
+                            <option>Arkansas</option>
+                        </select>
+                    </div>
+                </div>
             </div>
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label for="street">Street</label>
-                <input id="street" name="street" type="text" placeholder="Enter Street Address" class="form-control">
+            <div class="col-sm-10 col-lg-4">
+                <div class="form-group">
+                    <label for="commnents" class="col-md-4 control-label">Comments:</label>
+                    <div class="col-md-8">
+                        <textarea id="comments" name="comments" class="form-control"></textarea>
+                    </div>
+                </div>
             </div>
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label for="city">City</label>
-                <input id="city" name="city" type="text" placeholder="Enter City Address" class="form-control">
-            </div>
-
-            <!-- Select Basic -->
-            <div class="form-group">
-                <label for="state-select">State</label>
-                <select id="state-select" name="state-select" class="form-control">
-                    <option>Select State</option>
-                    <option>Alabama</option>
-                    <option>Arkansas</option>
-                </select>
-            </div>
-
-            <!-- Text input-->
-            <div class="form-group">
-                <label for="zip">Zip Code</label>
-                <input id="zip" name="zip" type="text" placeholder="Enter Zip Code" class="form-control">
-            </div>
-
-            <!-- Textarea -->
-            <div class="form-group">
-                <label for="comments">Comments</label>
-                <textarea id="comments" name="comments" class="form-control"></textarea>
-            </div>
-
-            <!-- Button -->
-            <div class="form-group">
-                <label for="submit"></label>
-                <button id="submit" name="submit" class="btn btn-default">Submit</button>
+            <div class="col-sm-10 col-lg-4">
+                <div class="form-group">
+                    <label for="submit" class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        <button id="submit" name="submit" class="btn btn-default">Submit</button>
+                    </div>
+                </div>
             </div>
 
         </form>
     </div>
-</div>
+@*</div>*@
         
 
 
