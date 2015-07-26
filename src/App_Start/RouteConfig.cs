@@ -13,6 +13,14 @@ namespace interceuticals_responsive
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            /* URL Routes */
+            routes.MapRoute(
+            name: "Contact",
+            url: "contact",
+            defaults: new { controller = "Home", action = "Contact", id = UrlParameter.Optional }
+            );
+            
+            /* Default Route */
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
