@@ -19,7 +19,14 @@ namespace interceuticals_responsive
             url: "contact",
             defaults: new { controller = "Home", action = "Contact", id = UrlParameter.Optional }
             );
-            
+
+            /* URL Routes */
+            routes.MapRoute(
+            name: "About",
+            url: "about",
+            defaults: new { controller = "Home", action = "About", id = UrlParameter.Optional }
+            );
+
             /* Default Route */
             routes.MapRoute(
                 name: "Default",

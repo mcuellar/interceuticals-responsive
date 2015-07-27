@@ -26,5 +26,6 @@ namespace interceuticals_responsive.Controllers
 
             return View();
         }
+
     }
 }
