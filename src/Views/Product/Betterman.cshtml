@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Betterman";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+  
+<div class="col-lg-offset-1"
+  <p>
+        <b>Welcome to our SECURED online store. Just select the product and start your order.</b><br>
+        For phone&nbsp;order, please call&nbsp;888-686-2698. Order by mail or fax,
+        please <a href="/interceuticals/WebContent/PDF/INT0968OrderForm.pdf">click here</a> for the order form.
+    </p><br /><br />
+</div>
+    <div class="row">
+
+        <div class="col-sm-8 col-lg-6">
+            <div class="form-group">
+                <label for="Product" class="col-md-4 control-label">Product:</label>
+                <div class="col-md-8">
+                    <select id="product-select" name="product-select" class="form-control"></select>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8 col-lg-6">
+            <div class="col-md-8">
+                <a class="btn btn-primary" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> Add to Cart </a>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+
+        <script type="text/javascript">
+
+            $().ready(function () {
+                $.ajax({
+                    type: "GET",
+                    //url: "http://localhost:49250/api/product/get?id=21",
+                    url: "http://interceuticals.com/bmshop/api/product/get?id=21",
+                    dataType: "json",
+                    success: function (data) {
+                        $("#product-select").get(0).options.length = 0;
+                        // $("#ddlGender").get(0).options[0] = new Option("Select gender", "-1");
+
+                        $.each(data, function (index, item) {
+                            $("#product-select").get(0).options[$("#product-select").get(0).options.length] = new Option(item.Label, item.Id);
+                        });
+                    },
+                    error: function () {
+                        alert("Failed to load genders");
+                    }
+                });
+            });
+        </script>
+    }
+
