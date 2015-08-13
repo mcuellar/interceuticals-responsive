@@ -18,5 +18,10 @@ namespace interceuticals_responsive.Controllers
         {
             return View();
         }
+
+        public ActionResult Betterwoman()
+        {
+            return View();
+        }
     }
 }

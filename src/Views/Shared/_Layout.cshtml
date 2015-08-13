@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Interceuticals</title>
     @Styles.Render("~/Content/css")
+    <link href="~/Content/toastr.min.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -33,7 +34,7 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Shop</a></li>
+                            <li><a href="~/product/betterwoman">Shop</a></li>
                             <li><a href="#">More Info</a></li>
                         </ul>
                     </li>
@@ -78,6 +79,14 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/jquery.validate.min.js")
+    @Scripts.Render("~/Scripts/toastr.min.js")
     @RenderSection("scripts", required: false)
+
+    <!--More Toastr Options Info: http://codeseven.github.io/toastr/demo.html -->
+    <script type="text/javascript">
+        toastr.options = {
+            "positionClass": "toast-top-center"
+        }
+    </script>
 </body>
 </html>
