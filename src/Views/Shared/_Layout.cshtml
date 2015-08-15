@@ -55,9 +55,11 @@
                         <span class="glyphicon glyphicon-shopping-cart"></span> Cart <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <div class="col-sm-12 clearfix">
-                                <div class="simpleCart_items"></div>
+                                <div class="simpleCart_items">
+                                    Total Items = 1
+                                </div>
                                 <ul id="cart" class='clearfix'></ul><li class="divider"></li>
-                                <div class="btn-group">
+                                <div class="dropdown-toggle">
                                     <a href="#" class="simpleCart_empty btn btn-sm btn-danger">Empty Cart</a>
                                     <a href="#" class="simpleCart_checkout btn btn-sm btn-success">Checkout</a>
                                 </div>
@@ -80,6 +82,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/jquery.validate.min.js")
     @Scripts.Render("~/Scripts/toastr.min.js")
+    <script src="~/Scripts/app.global.js")" type="text/javascript"></script>
     @RenderSection("scripts", required: false)
 
     <!--More Toastr Options Info: http://codeseven.github.io/toastr/demo.html -->

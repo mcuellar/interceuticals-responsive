@@ -23,7 +23,7 @@
         </div>
         <div class="col-sm-8 col-lg-6">
             <div class="col-md-8">
-                <a class="btn btn-primary" href="#"><i class="glyphicon glyphicon-shopping-cart"></i> Add to Cart </a>
+                <a class="btn btn-primary" href="#" onclick="javascript:addToCart()"><i class="glyphicon glyphicon-shopping-cart"></i> Add to Cart </a>
             </div>
         </div>
     </div>
@@ -51,6 +51,23 @@
                     }
                 });
             });
+
+            function addToCart() {
+                var data = {
+                    SessionId: "asdf1234",
+                    OrderPrice: 12.34,
+                    TotalItems: 1,
+                    CartProduct: {
+                        Id: 612,
+                        ParentProductId: 612,
+                        HasAutoship: false,
+                        Price: 12.34
+                    }
+                    //State: $.trim($('#state').val()),
+                };
+
+                postJsonData('cart/saves', data);
+            }
         </script>
     }
 
