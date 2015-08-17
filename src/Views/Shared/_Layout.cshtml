@@ -55,12 +55,12 @@
                         <span class="glyphicon glyphicon-shopping-cart"></span> Cart <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <div class="col-sm-12 clearfix">
-                                <div class="simpleCart_items">
-                                    Total Items = 1
+                                <div class="simpleCart_items" id="cartItems">
+                                    
                                 </div>
                                 <ul id="cart" class='clearfix'></ul><li class="divider"></li>
                                 <div class="dropdown-toggle">
-                                    <a href="#" class="simpleCart_empty btn btn-sm btn-danger">Empty Cart</a>
+                                    <a href="#" class="simpleCart_empty btn btn-sm btn-danger" onclick="javascript:postJsonData('/cart/clear/' + _LOCAL_CART_VALUE)">Empty Cart</a>
                                     <a href="#" class="simpleCart_checkout btn btn-sm btn-success">Checkout</a>
                                 </div>
                             </div>
@@ -90,6 +90,19 @@
         toastr.options = {
             "positionClass": "toast-top-center"
         }
+
+        function emptyCart() {
+            postJsonData('cart/clear/' + _LOCAL_CART_VALUE);
+        }
+
+        $().ready(function () {
+            if (_LOCAL_CART_VALUE > 0) {
+                setCartTotals(_LOCAL_CART_VALUE);
+               // toastr.info("Cart Id = " + localStorage.getItem(_SESSION_CART_ID));
+            } else {
+                $(_CART_ITEMS).html("Total Items = 0");
+            }
+        });
     </script>
 </body>
 </html>

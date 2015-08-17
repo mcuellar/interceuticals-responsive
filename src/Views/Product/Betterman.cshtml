@@ -47,13 +47,15 @@
                         });
                     },
                     error: function () {
-                        alert("Failed to load products.");
+                        toatr.error("Failed to load products.");
                     }
                 });
             });
 
             function addToCart() {
+                
                 var data = {
+                    Id: _LOCAL_CART_VALUE,
                     SessionId: "asdf1234",
                     OrderPrice: 12.34,
                     TotalItems: 1,
@@ -66,8 +68,14 @@
                     //State: $.trim($('#state').val()),
                 };
 
-                postJsonData('cart/saves', data);
+                postJsonData('cart/save', data);
             }
+
+            function setCartIdSession(data) {
+                toastr.success("Cart Id = " + data.Id);
+                localStorage.setItem(_LOCAL_CART_ID, data.Id);
+            }
+
         </script>
     }
 
