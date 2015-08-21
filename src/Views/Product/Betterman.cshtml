@@ -31,16 +31,18 @@
     @section Scripts {
 
         <script type="text/javascript">
+            var products;
 
             $().ready(function () {
                 $.ajax({
                     type: "GET",
                     //url: "http://localhost:49250/api/product/get?id=21",
-                    url: "http://interceuticals.com/bmshop/api/product/get?id=21",
+                    url: _BASE_URL + "product/get?id=21",
                     dataType: "json",
                     success: function (data) {
                         $("#product-select").get(0).options.length = 0;
                         // $("#ddlGender").get(0).options[0] = new Option("Select gender", "-1");
+                        products = data;
 
                         $.each(data, function (index, item) {
                             $("#product-select").get(0).options[$("#product-select").get(0).options.length] = new Option(item.Label, item.Id);
@@ -53,26 +55,27 @@
             });
 
             function addToCart() {
-                
+                var productSelected = $.grep(products, function (item) { return item.Id == $.trim($('#product-select').val()); });
+                var price = productSelected[0].Price;
+
                 var data = {
                     Id: _LOCAL_CART_VALUE,
                     SessionId: "asdf1234",
-                    OrderPrice: 12.34,
+                    OrderPrice: price,
                     TotalItems: 1,
                     CartProduct: {
-                        Id: 612,
-                        ParentProductId: 612,
+                        Id: $.trim($('#product-select').val()),
+                        ParentProductId: $.trim($('#product-select').val()),
                         HasAutoship: false,
-                        Price: 12.34
+                        Price: price
                     }
-                    //State: $.trim($('#state').val()),
                 };
 
                 postJsonData('cart/save', data);
             }
 
             function setCartIdSession(data) {
-                toastr.success("Cart Id = " + data.Id);
+                //toastr.success("Cart Id = " + data.Id);
                 localStorage.setItem(_LOCAL_CART_ID, data.Id);
             }
 

@@ -3,12 +3,13 @@ host = document.location.host;
 
 _LOCAL_CART_ID = "cartId";
 _CART_ITEMS = "#cartItems";
+_CART_HEADER = "#cartHeader";
 _LOCAL_CART_VALUE = localStorage.getItem(_LOCAL_CART_ID) == null ? 0 : localStorage.getItem(_LOCAL_CART_ID);
 
-baseURI = "http://" + host + "/bmshop/api/";
+_BASE_URL = "http://" + host + "/bmshop/api/";
 
 if (host.indexOf('localhost') > -1)
-    baseURI = "http://localhost:49250/api/";
+    _BASE_URL = "http://localhost:49250/api/";
     
 
 
@@ -24,7 +25,7 @@ $(document).ready(function () {
 
 function getJsonData(webmethod, divId) {
     $('#spinner').show();
-    var url = baseURI + webmethod;
+    var url = _BASE_URL + webmethod;
     var start = new Date().getTime();
     $.ajax({
         url: url,
@@ -42,14 +43,15 @@ function getJsonData(webmethod, divId) {
 }
 
 function setCartTotals(cartId) {
-    $.getJSON(baseURI + '/cart/totals/' + cartId, function (data) {
-        $(_CART_ITEMS).html("Total Items = " + data.TotalItems);
+    $.getJSON(_BASE_URL + '/cart/totals/' + cartId, function (data) {
+        $(_CART_ITEMS).html("Total = $" + data.TotalPrice);
+        $(_CART_HEADER).html("Cart (" + data.TotalItems + ")");
     });
 }
 
 function postJsonData(webmethod, postedData) {
     //$('#spinner').show();
-    var url = baseURI + webmethod;
+    var url = _BASE_URL + webmethod;
    
     $.ajax({
         url: url,
