@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-app="orderApp" ng-controller="orderCtrl">
+
+    <h3>Order Details</h3>
+
+    <table class="table">
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="item in cartItems">
+
+            <td>{{ item.ProductName }}</td>
+            <td>${{ item.Price }}</td>
+            <td><a href="#" ng-click="removeItemFromCart(item)">Remove</a></td>
+        </tr>
+    </table>
+
+</div>
+
+@section Scripts {
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="~/Scripts/app.order.js" type="text/javascript"></script>
+}
+
+
+

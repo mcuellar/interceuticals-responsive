@@ -43,10 +43,14 @@ function getJsonData(webmethod, divId) {
 }
 
 function setCartTotals(cartId) {
-    $.getJSON(_BASE_URL + '/cart/totals/' + cartId, function (data) {
-        $(_CART_ITEMS).html("Total = $" + data.TotalPrice);
-        $(_CART_HEADER).html("Cart (" + data.TotalItems + ")");
-    });
+    if (_LOCAL_CART_VALUE > 0) {
+        $.getJSON(_BASE_URL + '/cart/totals/' + cartId, function (data) {
+            $(_CART_ITEMS).html("Total = $" + data.TotalPrice);
+            $(_CART_HEADER).html("Cart (" + data.TotalItems + ")");
+        });
+    } else {
+        $(_CART_ITEMS).html("Total Items = 0");
+    }
 }
 
 function postJsonData(webmethod, postedData) {
