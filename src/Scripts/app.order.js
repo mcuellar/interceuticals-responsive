@@ -51,3 +51,66 @@ app.controller('orderCtrl', function ($scope, $http, orderFactory, notificationF
         orderFactory.removeItemFromCart(item).success(successCallback).error(errorCallback);
     };
 });
+
+$(document).ready(function () {
+
+    jQuery.validator.setDefaults({
+        //debug: true,
+        success: "valid",
+        highlight: function (element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function (element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function (error, element) {
+            if (element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        }
+    });
+
+    var $validator = $("#commentForm").validate({
+        rules: {
+            emailfield: {
+                required: true,
+                email: true,
+                minlength: 3
+            },
+            namefield: {
+                required: true,
+                minlength: 3
+            },
+            urlfield: {
+                required: true,
+                minlength: 3,
+                url: true
+            }
+        }
+    });
+
+    $('#rootwizard').bootstrapWizard({
+        //Options: nav-divider nav-stacked nav-tabs nav-pills
+        'nextSelector': '.button-next',
+        'previousSelector': '.button-previous',
+        'tabClass': 'nav nav-tabs',
+        'onNext': function (tab, navigation, index) {
+            var $valid = $("#commentForm").valid();
+            if (!$valid) {
+                $validator.focusInvalid();
+                return false;
+            }
+            else {
+                $('#firstNameShipping').val($('#firstName').val());
+                $('#lastNameShipping').val($('#lastName').val());
+                $('#shippingAddress').val($('#address').val());
+            }
+        }
+    });
+});
+
+

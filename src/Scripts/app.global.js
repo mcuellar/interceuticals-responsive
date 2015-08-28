@@ -13,15 +13,15 @@ if (host.indexOf('localhost') > -1)
     
 
 
-$(document).ready(function () {
-    $("#spinner").bind("ajaxSend", function () {
-        $(this).show();
-    }).bind("ajaxStop", function () {
-        $(this).hide();
-    }).bind("ajaxError", function () {
-        $(this).hide();
-    });
-});
+//$(document).ready(function () {
+//    $("#spinner").bind("ajaxSend", function () {
+//        $(this).show();
+//    }).bind("ajaxStop", function () {
+//        $(this).hide();
+//    }).bind("ajaxError", function () {
+//        $(this).hide();
+//    });
+//});
 
 function getJsonData(webmethod, divId) {
     $('#spinner').show();
