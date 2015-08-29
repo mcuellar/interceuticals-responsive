@@ -105,9 +105,13 @@ $(document).ready(function () {
                 return false;
             }
             else {
-                $('#firstNameShipping').val($('#firstName').val());
-                $('#lastNameShipping').val($('#lastName').val());
-                $('#shippingAddress').val($('#address').val());
+                $('#shipFirstName').val($('#firstName').val());
+                $('#shipLastName').val($('#lastName').val());
+                $('#shipAddress').val($('#address').val());
+                $('#shipCity').val($('#city').val());
+                $('#shipEmail').val($('#email').val());
+                $('#shipState').val($('#state').val());
+                $('#shipProvince').val($('#province').val());
             }
         }
     });

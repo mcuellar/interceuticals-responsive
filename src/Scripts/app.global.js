@@ -66,7 +66,11 @@ function postJsonData(webmethod, postedData) {
         contentType: 'application/json; charset=utf-8',
         success: function (data) {
             //$('#spinner').hide();
-            toastr.success(data.Message);
+            if (webmethod == 'cart/save')
+                toastr.success('<div>' + data.Message + '<a href="../order" class="btn btn-sm btn-warning">Checkout</a>' + '</div>');
+            else
+                toastr.success(data.Message);
+
             if (_LOCAL_CART_VALUE == 0)
                 setCartIdSession(data);
             else
