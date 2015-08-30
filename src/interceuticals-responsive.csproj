@@ -138,6 +138,7 @@
     <Content Include="Content\images\int_home_betterm2.png" />
     <Content Include="Content\images\int_home_betterw.png" />
     <Content Include="Content\images\PhoneNumber.png" />
+    <Content Include="Content\images\security.jpg" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />

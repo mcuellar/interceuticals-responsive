@@ -8,6 +8,9 @@ app.factory('orderFactory', function ($http) {
         removeItemFromCart: function (item) {
             return $http.post(_BASE_URL + 'cart/deleteitem?id=' + item.CartItemId);
         },
+        clearCart: function () {
+            return $http.post(_BASE_URL + 'cart/clear/' + _LOCAL_CART_VALUE);
+        }
     };
 });
 
@@ -43,12 +46,17 @@ app.controller('orderCtrl', function ($scope, $http, orderFactory, notificationF
         return orderFactory.getCartItems().success(getCartItemsSuccessCallback).error(errorCallback);
     };
 
+
     var errorCallback = function (data, status, headers, config) {
         notificationFactory.error(data.Message);
     };
 
     $scope.removeItemFromCart = function (item) {
         orderFactory.removeItemFromCart(item).success(successCallback).error(errorCallback);
+    };
+
+    $scope.clearCart = function () {
+        orderFactory.clearCart().success(successCallback).error(errorCallback);
     };
 });
 

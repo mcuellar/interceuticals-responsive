@@ -4,24 +4,29 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div ng-app="orderApp" ng-controller="orderCtrl">
+<div class="row">
+    <div class="col-sm-8">
+        <div>
+            <h3>Order Details</h3>
+            <table class="table">
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="item in cartItems">
 
-    <h3>Order Details</h3>
-
-    <table class="table">
-        <tr>
-            <th>Product</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        <tr ng-repeat="item in cartItems">
-
-            <td>{{ item.ProductName }}</td>
-            <td>${{ item.Price }}</td>
-            <td><a href="#" ng-click="removeItemFromCart(item)">Remove</a></td>
-        </tr>
-    </table>
-
+                    <td>{{ item.ProductName }}</td>
+                    <td>${{ item.Price }}</td>
+                    <td><a href="#" ng-click="removeItemFromCart(item)">Remove</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-sm-4" style="padding-top:4.7%;">
+        <img alt="Call Us at 888-686-2698" class="img-responsive" src="~/Content/images/security.jpg" /><br />
+        <p>Your privacy is important to us. BetterWOMAN does not rent, sell or share your personal information with any third parties.</p>
+    </div>
 </div>
 <div class="row">
 
@@ -212,9 +217,7 @@
 </div>
 
 @section Scripts {
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.min.js"></script>
-    <script src="~/Scripts/app.order.js" type="text/javascript"></script>
+    @*<script src="~/Scripts/app.order.js" type="text/javascript"></script>*@
 }
 
 
