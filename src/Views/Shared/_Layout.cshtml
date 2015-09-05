@@ -55,11 +55,11 @@
                     <!-- Cart Menu-->
                     <li class="dropdown menu-large">
                         <a href="#" class="dropdown-toggle" id="dLabel" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-shopping-cart"></span> <span id="cartHeader">Cart</span><b class="caret"> </b>
+                            <span class="glyphicon glyphicon-shopping-cart"></span> <span id="cartHeader">Cart ({{totalItems}})</span><b class="caret"> </b>
                         </a>
                         <ul class="dropdown-menu">
                             <div class="col-sm-12 clearfix">
-                                <div class="text-info" id="cartItems">Total</div>
+                                <div class="text-info" id="cartItems">Total = ${{totalPrice}}</div>
                                 <ul id="cart" class='clearfix'></ul><li class="divider"></li>
                                 <div class="dropdown-toggle">
                                     @*<a href="#" class="simpleCart_empty btn btn-sm btn-danger" onclick="javascript:postJsonData('/cart/clear/' + _LOCAL_CART_VALUE)">Empty Cart</a>*@

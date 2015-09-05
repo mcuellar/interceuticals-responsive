@@ -73,8 +73,8 @@ function postJsonData(webmethod, postedData) {
 
             if (_LOCAL_CART_VALUE == 0)
                 setCartIdSession(data);
-            else
-                setCartTotals(_LOCAL_CART_VALUE);
+            //else
+            //    setCartTotals(_LOCAL_CART_VALUE);
 
         },
         error: function (jqXHR, textStatus, data) {

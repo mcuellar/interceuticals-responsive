@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<input type="hidden" name="hdnTotalPrice" id="hdnTotalPrice" value="{{totalPrice}}"/>
 <div class="row">
     <div class="col-sm-8">
         <div>
@@ -19,6 +20,11 @@
                     <td>{{ item.ProductName }}</td>
                     <td>${{ item.Price }}</td>
                     <td><a href="#" ng-click="removeItemFromCart(item)">Remove</a></td>
+                </tr>
+                <tr>
+                    <td class="text-muted">Total Price:</td>
+                    <td class="text-danger"><b>${{totalPrice}}</b></td>
+                    <td></td>
                 </tr>
             </table>
         </div>
@@ -79,8 +85,8 @@
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">State:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="state" name="state"
-                                   placeholder="Enter your billing State" required>
+                            @*<p> Country Id of selected state is : {{selectedItem.CountryId}} </p>*@
+                            <select class="form-control" id="state" name="state" ng-model="selectedItem" ng-options="state.Label for state in states" required></select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -90,7 +96,14 @@
                                    placeholder="Enter your province if available">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Country:</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="country" name="country" ng-model="selectedItem" ng-options="country.CountryName for country in countries" required></select>
+                        </div>
+                    </div>
                 </div>
+                <!------------------------- Shipping Tab -------------------------->
                 <div class="tab-pane" id="tab2">
                     <br />
                     <div class="form-group">
@@ -116,24 +129,23 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Address:</label>
+                        <label for="name" class="col-sm-2 control-label">Shipping Address:</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="shipAddress" name="shipAddress"
                                    placeholder="Enter your shipping address" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">City:</label>
+                        <label for="name" class="col-sm-2 control-label">Shipping City:</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="shipCity" name="shipCity"
                                    placeholder="Enter your shipping city" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">State:</label>
+                        <label for="name" class="col-sm-2 control-label">Shipping State:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="shipState" name="shipState"
-                                   placeholder="Enter your shipping state" required>
+                            <select class="form-control" id="shipState" name="shipState" ng-model="selectedItem" ng-options="state.Label for state in states" required></select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -143,17 +155,24 @@
                                    placeholder="Enter your province if available">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Shipping Country:</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="shipCountry" name="shipCountry" ng-model="selectedItem" ng-options="country.CountryName for country in countries" required></select>
+                        </div>
+                    </div>
                 </div>
                 <!---------------       PAYMENT TAB    ------------------->
                 <div class="tab-pane" id="tab3">
                     <br />
                     <div class="form-group">
-                        <img src="./Content/images/cc.jpg" class="img-responsive"/>
+                        @*<img alt="Credit Cards" src="~/Content/images/cc.jpg" class="img-responsive" />*@
+                        <img src="../Content/images/cc.jpg" alt="Credit Cards"/>
                     </div>
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Card Number</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="name"
+                            <input type="text" class="form-control" id="ccNumber" name="ccNumber"
                                    placeholder="Enter your card number">
                         </div>
                     </div>
@@ -200,6 +219,7 @@
                 @*<ul class="pager wizard">*@
                     <div style="float:right">
                         <input type='button' class='btn button-next' name='next' value='Next' />
+                        <input name="finish" id="finish" type='button' value="Finish"/>
                         @*<input type='button' class='btn button-last' name='last' value='Last' />*@
                     </div>
                     <div style="float:left">
