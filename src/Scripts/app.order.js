@@ -11,11 +11,17 @@ app.factory('orderFactory', function ($http) {
         },
         clearCart: function () {
             return $http.post(_BASE_URL + 'cart/clear/' + _LOCAL_CART_VALUE);
+        },
+        addToCart: function (data) {
+            return $http.post(_BASE_URL + 'cart/save', data);
+        },
+        makeRequest: function (method, data) {
+            return $http.post(_BASE_URL + method, data)
         }
     };
 });
 
-app.factory('notificationFactory', function () {
+app.factory('notificationFactory', function () {    
 
     return {
         success: function (message) {
@@ -40,13 +46,16 @@ app.controller('orderCtrl', function ($scope, $http, orderFactory, notificationF
     $http.get(_BASE_URL + 'data/get/states')
     .success(function (response) {
         $scope.states = response;
+        $scope.selectedState = $scope.states[0];
+        $scope.selecteShipState = $scope.states[0];
     });
 
     $http.get(_BASE_URL + 'data/get/countries')
     .success(function (response) {
         $scope.countries = response;
+        $scope.selectedCountry = $scope.countries[0];
+        $scope.selectedShipCountry = $scope.countries[0];
     });
-
 
 
     var getCartItemsSuccessCallback = function (data, status) {
@@ -60,6 +69,15 @@ app.controller('orderCtrl', function ($scope, $http, orderFactory, notificationF
         return orderFactory.getCartItems().success(getCartItemsSuccessCallback).error(errorCallback);
     };
 
+    var addToCartSuccessCallback = function (data, status, headers, config) {
+        // Save Cart Id to Local Storage if not present
+        setCartIdSession(data);
+
+        toastr.success('<div>' + data.Message + '<a href="../order" class="btn btn-sm btn-warning">Checkout</a>' + '</div>');
+
+        return orderFactory.getCartItems().success(getCartItemsSuccessCallback).error(errorCallback);
+    }
+
 
     var errorCallback = function (data, status, headers, config) {
         notificationFactory.error(data.Message);
@@ -69,9 +87,24 @@ app.controller('orderCtrl', function ($scope, $http, orderFactory, notificationF
         orderFactory.removeItemFromCart(item).success(successCallback).error(errorCallback);
     };
 
+    $scope.makeRequest = function (method, data) {
+        orderFactory.makeRequest(method, data).success().error(errorCallback);
+    };
+
     $scope.clearCart = function () {
         orderFactory.clearCart().success(successCallback).error(errorCallback);
     };
+
+    $scope.addToCart = function (data) {
+        orderFactory.addToCart(data).success(addToCartSuccessCallback).error(errorCallback);
+    };
+
+    function setCartIdSession(data) {
+        if (_LOCAL_CART_VALUE == 0) {
+            localStorage.setItem(_LOCAL_CART_ID, data.Id);
+            _LOCAL_CART_VALUE = data.Id;
+        }
+    }
 
     function setTotals() {
         var count = 0;
@@ -82,10 +115,8 @@ app.controller('orderCtrl', function ($scope, $http, orderFactory, notificationF
             total = total + value.Price;
         })
 
-
         $scope.totalItems = count;
         $scope.totalPrice = total;
-       // $('hdnTotalPrice').val(total);
     }
 });
 
@@ -110,7 +141,7 @@ $(document).ready(function () {
         }
     });
 
-    var $validator = $("#commentForm").validate({
+    var $validator = $("#checkoutForm").validate({
         rules: {
             emailfield: {
                 required: true,
@@ -136,7 +167,7 @@ $(document).ready(function () {
         'finishSelector': '.button-next',
         'tabClass': 'nav nav-tabs',
         'onNext': function (tab, navigation, index) {
-            var $valid = $("#commentForm").valid();
+            var $valid = $("#checkoutForm").valid();
             if (!$valid) {
                 $validator.focusInvalid();
                 return false;
@@ -175,7 +206,12 @@ $(document).ready(function () {
             ShippingEmail: $.trim($('#shipEmail').val()),
         }
 
-        postJsonData('order/save', data);
+        // Access Angular App Scope
+        var cart = angular.element($("#cartApp")).scope();
+        if (cart.totalItems > 0)
+            postJsonData('order/save', data);
+        else
+            toastr.warning("Cart is empty. Nothing to checkout.");
     });
 });
 

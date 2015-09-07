@@ -4,6 +4,8 @@ host = document.location.host;
 _LOCAL_CART_ID = "cartId";
 _CART_ITEMS = "#cartItems";
 _CART_HEADER = "#cartHeader";
+
+/* Set Cart ID to 0 if first time shopping */
 _LOCAL_CART_VALUE = localStorage.getItem(_LOCAL_CART_ID) == null ? 0 : localStorage.getItem(_LOCAL_CART_ID);
 
 _BASE_URL = "http://" + host + "/bmshop/api/";
@@ -71,10 +73,7 @@ function postJsonData(webmethod, postedData) {
             else
                 toastr.success(data.Message);
 
-            if (_LOCAL_CART_VALUE == 0)
-                setCartIdSession(data);
-            //else
-            //    setCartTotals(_LOCAL_CART_VALUE);
+
 
         },
         error: function (jqXHR, textStatus, data) {

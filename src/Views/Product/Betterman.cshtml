@@ -60,7 +60,7 @@
 
                 var data = {
                     Id: _LOCAL_CART_VALUE,
-                    SessionId: "asdf1234",
+                    SessionId: '@Session.SessionID',
                     OrderPrice: price,
                     TotalItems: 1,
                     CartProduct: {
@@ -70,14 +70,14 @@
                         Price: price
                     }
                 };
-
-                postJsonData('cart/save', data);
+                
+                //postJsonData('cart/save', data);
+                //    setCartTotals(_LOCAL_CART_VALUE);
+                var cart = angular.element($("#cartApp")).scope();
+                cart.addToCart(data);
             }
 
-            function setCartIdSession(data) {
-                //toastr.success("Cart Id = " + data.Id);
-                localStorage.setItem(_LOCAL_CART_ID, data.Id);
-            }
+
 
         </script>
     }
