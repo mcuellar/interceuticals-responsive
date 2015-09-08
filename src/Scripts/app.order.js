@@ -36,6 +36,16 @@ app.factory('notificationFactory', function () {
 app.controller('orderCtrl', function ($scope, $http, orderFactory, notificationFactory) {
     var url = _BASE_URL + 'cart/items?id=' + _LOCAL_CART_VALUE
 
+    var currentYear = new Date().getFullYear();
+    var years = [];
+
+    for (index = 0 ; index <= 15; index++) {
+        years[index] = { label: currentYear, value: currentYear }
+        currentYear += 1;
+    }
+
+    $scope.ccyears = years;
+    $scope.selectedYears = $scope.ccyears[0];
 
     $http.get(url)
     .success(function (response) {
@@ -167,6 +177,7 @@ $(document).ready(function () {
         'finishSelector': '.button-next',
         'tabClass': 'nav nav-tabs',
         'onNext': function (tab, navigation, index) {
+            var currentTab = tab;
             var $valid = $("#checkoutForm").valid();
             if (!$valid) {
                 $validator.focusInvalid();
@@ -182,7 +193,26 @@ $(document).ready(function () {
                 $('#shipProvince').val($('#province').val());
             }
         }
+        //onTabShow: function (tab, navigation, index) {
+        //    var $total = navigation.find('li').length;
+        //    var $current = index + 1;
+        //    var $percent = ($current / $total) * 100;
+        //    $('#rootwizard').find('.bar').css({ width: $percent + '%' });
+
+        //    // If it's the last tab then hide the last button and show the finish instead
+        //    if ($current >= $total) {
+        //        $('#rootwizard').find('.pager .next').hide();
+        //        $('#rootwizard').find('.pager .finish').show();
+        //        $('#rootwizard').find('.pager .finish').removeClass('disabled');
+        //    } else {
+        //        $('#rootwizard').find('.pager .next').show();
+        //        $('#rootwizard').find('.pager .finish').hide();
+        //    }
+
+        //}
+
     });
+
 
     $('#finish').click(function () {
         var data = {

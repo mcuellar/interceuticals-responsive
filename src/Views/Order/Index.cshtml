@@ -163,7 +163,7 @@
                     </div>
                 </div>
                 <!---------------       PAYMENT TAB    ------------------->
-                <div class="tab-pane" id="tab3">
+                <div class="tab-pane" id="paymentTab">
                     <br />
                     <div class="form-group">
                         @*<img alt="Credit Cards" src="~/Content/images/cc.jpg" class="img-responsive" />*@
@@ -198,39 +198,24 @@
                                     </select>
                                 </div>
                                 <div class="col-xs-5">
-                                    <select class="form-control" name="expiry-year">
-                                        <option value="13">2013</option>
-                                        <option value="14">2014</option>
-                                        <option value="15">2015</option>
-                                        <option value="16">2016</option>
-                                        <option value="17">2017</option>
-                                        <option value="18">2018</option>
-                                        <option value="19">2019</option>
-                                        <option value="20">2020</option>
-                                        <option value="21">2021</option>
-                                        <option value="22">2022</option>
-                                        <option value="23">2023</option>
-                                    </select>
+                                    <select class="form-control" name="expiry-year" ng-model="selectedYears" ng-options="year.label for year in ccyears" required></select>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                @*<ul class="pager wizard">*@
-                    <div style="float:right">
-                        <input type='button' class='btn button-next' name='next' value='Next' />
-                        <input name="finish" id="finish" type='button' value="Finish"/>
-                        @*<input type='button' class='btn button-last' name='last' value='Last' />*@
-                    </div>
-                    <div style="float:left">
-                        @*<input type='button' class='btn button-first' name='first' value='First' />*@
-                        <input type='button' class='btn button-previous' name='previous' value='Previous' />
-                    </div>
-                    @*<li class="previous first" style="display:none;"><a href="#">First</a></li>
-                    <li class="previous"><a href="#">Previous</a></li>
-                    <li class="next last" style="display:none;"><a href="#">Last</a></li>
-                    <li class="next"><a href="#">Next</a></li>*@
-                @*</ul>*@
+                @*<ul class="pager wizard">
+                    <li class="previous"><a href="javascript:;">Previous</a></li>
+                    <li class="next"><a href="javascript:;" name="next">Next</a></li>
+                    <li class="next finish" style="display:none;"><a href="javascript:;">Finish</a></li>
+                </ul>*@
+                <div style="float:right">
+                    <input type='button' class='btn button-next' name='next' value='Next' />
+                    <input name="finish" class='btn button-finish' id="finish" type='button' value="Finish"/>
+                </div>
+                <div style="float:left">
+                    <input type='button' class='btn button-previous' name='previous' value='Previous' />
+                </div>
             </div>
         </div>
     </form>
